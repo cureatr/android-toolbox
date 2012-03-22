@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -135,8 +136,15 @@ public class HiddenQuickActionSetup extends HiddenViewSetup {
 		mLinearLayout.setLayoutParams(new LayoutParams(
 				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		mLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
-		mLinearLayout.setGravity(Gravity.CENTER);
+		mLinearLayout.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
 		mLinearLayout.setPadding(0, 0, 0, 0);
+		mLinearLayout.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				closeHiddenView();	//hide again if they don't tap on a button
+				return true;
+			}
+		});
 		
 		mIndicatorSpacing = new Rect(0, 0, 0, AndroidUtils.dipToPixel(context, 10));
 		
@@ -421,10 +429,10 @@ public class HiddenQuickActionSetup extends HiddenViewSetup {
 		info.description = actionDescription;
 		
 		RelativeLayout rl = new RelativeLayout(mLinearLayout.getContext());
-		LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(
+		/*LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(
 				0, LayoutParams.FILL_PARENT);
 		params2.weight = 1;
-		rl.setLayoutParams(params2);
+		rl.setLayoutParams(params2);*/
 		rl.addView(iv);
 		rl.setTag(info);
 		rl.setOnTouchListener(mTouchListener);
