@@ -442,6 +442,29 @@ public class HiddenQuickActionSetup extends HiddenViewSetup {
 		return true;
 	}
 	
+	public boolean addAction(int actionId, String actionDescription, View v) {
+		int count = mLinearLayout.getChildCount();
+		
+		for (int i = 0; i < count; i++) {
+			if (actionId == ((ActionInfo) mLinearLayout.getChildAt(i).getTag()).id) {
+				return false;
+			}
+		}
+		
+		ActionInfo info = new ActionInfo();
+		info.id = actionId;
+		info.description = actionDescription;
+		
+		RelativeLayout rl = new RelativeLayout(mLinearLayout.getContext());
+		rl.addView(v);
+		rl.setTag(info);
+		rl.setOnTouchListener(mTouchListener);
+		
+		mLinearLayout.addView(rl);
+		
+		return true;
+	}
+	
 	/**
 	 * Remove added action.
 	 * 
