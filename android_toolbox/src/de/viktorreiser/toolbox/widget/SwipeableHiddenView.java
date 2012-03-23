@@ -513,6 +513,19 @@ public class SwipeableHiddenView extends FrameLayout implements SwipeableListIte
 				currentSwipeableHiddenView.bindHiddenView();
 			}
 		}
+
+		public abstract class HiddenViewVisibleListener {
+			public abstract void onHiddenViewVisible();
+		}
+		private HiddenViewVisibleListener mHiddenViewVisibleListener = null;
+		public void setHiddenViewVisibleListener(HiddenViewVisibleListener l) {
+			mHiddenViewVisibleListener = l;
+		}
+		public void onHiddenViewVisible() {
+			if (mHiddenViewVisibleListener != null) {
+				mHiddenViewVisibleListener.onHiddenViewVisible();
+			}
+		}
 	}
 	
 	
@@ -1156,6 +1169,10 @@ public class SwipeableHiddenView extends FrameLayout implements SwipeableListIte
 				
 				if (mAnimating) {
 					mAnimationHandler.postDelayed(mAnimationStep, 30);
+				} else {
+					if (isHiddenViewVisible()) {
+						mData.onHiddenViewVisible();
+					}
 				}
 			}
 		};
