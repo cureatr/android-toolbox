@@ -185,7 +185,7 @@ public class SwipeableHiddenView extends FrameLayout implements SwipeableListIte
 	 * 
 	 * @author Viktor Reiser &lt;<a href="mailto:viktorreiser@gmx.de">viktorreiser@gmx.de</a>&gt;
 	 */
-	public static abstract class HiddenViewSetup extends SwipeableSetup {
+	public static abstract class HiddenViewSetup extends SwipeableListItem.SwipeableSetup {
 		
 		// PRIVATE --------------------------------------------------------------------------------
 		
