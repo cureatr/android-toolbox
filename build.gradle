@@ -1,0 +1,39 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.8'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.6.3'
+    }
+}
+
+apply plugin: 'android-library'
+
+android {
+    compileSdkVersion 15
+    buildToolsVersion "17.0"
+
+    sourceSets {
+        main {
+            manifest.srcFile 'android_toolbox/AndroidManifest.xml'
+            java.srcDirs = ['android_toolbox/src']
+            resources.srcDirs = ['android_toolbox/src']
+            aild.srcDirs = ['android_toolbox/src']
+            renderscript.srcDirs = ['android_toolbox/src']
+            res.srcDirs = ['android_toolbox/res']
+            assets.srcDirs = ['android_toolbox/assets']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree('android_toolbox/libs') {
+        include '*.jar'
+    }
+}
+
