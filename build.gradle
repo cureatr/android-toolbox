@@ -23,7 +23,7 @@ android {
             manifest.srcFile 'android_toolbox/AndroidManifest.xml'
             java.srcDirs = ['android_toolbox/src']
             resources.srcDirs = ['android_toolbox/src']
-            aild.srcDirs = ['android_toolbox/src']
+            aidl.srcDirs = ['android_toolbox/src']
             renderscript.srcDirs = ['android_toolbox/src']
             res.srcDirs = ['android_toolbox/res']
             assets.srcDirs = ['android_toolbox/assets']
